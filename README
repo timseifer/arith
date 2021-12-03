@@ -1,0 +1,91 @@
+---------------------------------------------------------------------------
+Required Forms:
+---------------------------------------------------------------------------
+
+Names: Wade Perry (jperry04), Tim Seifert(tseife01)
+
+We received help from course TAs, documentation websites, and Stack Overflow
+
+Everything from the specification has been correctly implemented.
+
+Time Spent on Design: Approximately 6 hours 
+
+Time Spent on Implementation: Approximately 25 hours
+
+---------------------------------------------------------------------------
+Files:
+---------------------------------------------------------------------------
+[Original Image]
+      |
+      |
+      V
+componentVCS.c: Interface for VCS form. Takes a Pnmppm 
+componentVCS.h: Implements the decompression of a VCS Uarray
+and compression of a PPM to a UArray of VCS structs.
+          |
+          |
+          |
+[UArray of VCS structs]
+          |   
+          |
+          V
+componentDCT.h: Interface for DCT form. Takes a UArray which stores VCS 
+reprsented structs.
+componentDCT.c: Implements the decompression of DCT Uarray
+and compression of a UArray of CVS structs to a UArray of DCT structs.
+          |
+          |
+          |
+[UArray of DCT structs]
+          |
+          |
+          V
+conponentPacking.c: Takes a UArray which stores DCT reprsented structs and 
+compresses them to packed bits printed to standard ouput as characters.
+componentPacking.h: Interface for componentPacking.c. 
+          |
+          |
+          |
+[Standard Output]
+          |
+          |
+          V
+[Compressed Image]
+
+---------------------------------------------------------------------------
+Architecture:
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+Compression:
+---------------------------------------------------------------------------
+Image is represented as PPM file * 
+PPM -> Component Video Color Space
+
+Image is represented as 2D UArray ComponentVideoColorSpace
+CVCS -> DCT
+
+Image is represented as 2D UArray  Discrete Cosine Transform
+DCT->Words
+
+Image is represented as a 2D UArray of Words
+Write to standard output
+
+---------------------------------------------------------------------------
+Decompression:
+---------------------------------------------------------------------------
+
+Image is represented as File *
+Read from file and put data into a 2D UArray Words
+
+Image is represented as 2D UArray of words
+Words -> DCT
+
+Image is represented as 2D UArray  Discrete Cosine Transform
+DCT->CVCS
+
+Image is represented as 2D UArray ComponentVideoColorSpace
+CVCS->PPM
+
+Image is represented as PPM file *
+Write to standard output
